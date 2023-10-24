@@ -19,45 +19,45 @@ In NeurIPS 2023
 - ##### Getting Started
 
 ```python
-git clone https://github.com/haihuangcode/ACMG-MUR
-cd ACMG-MUR
+git clone https://github.com/haihuangcode/CMG
+cd CMG
 # You don't actually have to install all the libraries in the txt file, you can choose to install them as needed.
 pip install -r requirements.txt
 ```
 
 - ##### Pretrain
 ```python
-cd ACMG-MUR/code/src
+cd CMG/code/src
 ./pretrain.sh
 ```
 
 - ##### AVE_downstream
 ```python
-cd ACMG-MUR/code/src
+cd CMG/code/src
 ./ave.sh
 ```
 
 - ##### AVVP_downstream
 ```python
-cd ACMG-MUR/code/src
+cd CMG/code/src
 ./avvp.sh
 ```
 
 - ##### AVE_AVVP_downstream
 ```python
-cd ACMG-MUR/code/src
+cd CMG/code/src
 ./ave_avvp.sh
 ```
 
 - ##### UCF_VGGSOUND_downstream
 ```python
-cd ACMG-MUR/code/src
+cd CMG/code/src
 ./ucf_vggsound.sh
 ```
 
 - ##### AVS_downstream
 ```python
-cd ACMG-MUR/code/AVSBench_downstream/avs_scripts/avs_s4
+cd CMG/code/AVSBench_downstream/avs_scripts/avs_s4
 ./train.sh
 ./test.sh
 ```
