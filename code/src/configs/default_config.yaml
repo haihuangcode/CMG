@@ -1,0 +1,17 @@
+# ======================================= Learning configs ==================================
+  n_epoch: 100
+  batch_size: 64
+  test_batch_size: 16
+  lr: 0.001
+  mi_lr: 0.001
+  loss_weights: 0.5
+  clip_gradient: 0.8
+  start_epoch: 0
+  weight_decay: 5e-4
+
+  # ======================================= Print and snapshot configs ==================================
+  snapshot_pref: ./exp/debug/123
+  print_freq: 20
+  eval_freq: 1
+
+
