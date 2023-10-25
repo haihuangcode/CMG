@@ -78,7 +78,9 @@ Our code is based on [AVE](https://github.com/YapengTian/AVE-ECCV18), [AVVP](htt
 
 [Baidu Disk](https://pan.baidu.com/s/1u6gNTyclDSO5e1ONOKwqkA ) (pwd: 1234)
 
-For the video and audio feature extraction method, please refer to [AVE](https://github.com/YapengTian/AVE-ECCV18), text is based on the label to generate a description-focused statement of approximately 10 words in length.
+### Note
+- For the video and audio feature extraction method, please refer to [AVE](https://github.com/YapengTian/AVE-ECCV18), text is based on the label to generate a description-focused statement of approximately 10 words in length.
+- There is no validation set for the pre-training process, in this paper it is done by testing the performance of each model on the downstream of the [AVE](https://github.com/YapengTian/AVE-ECCV18), and the model with the best performance tests the rest of the downstream tasks, so the [AVE](https://github.com/YapengTian/AVE-ECCV18) can be regarded as a validation set and the model with the best pre-training appears in the first 5 epochs.
 
 ## ✏Directory
 
