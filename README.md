@@ -74,18 +74,21 @@ cite of ACMG-MUR
 
 Our code is based on [AVE](https://github.com/YapengTian/AVE-ECCV18), [AVVP](https://github.com/YapengTian/AVVP-ECCV20), [PSP](https://github.com/jasongief/PSP_CVPR_2021), [CPSP](https://github.com/jasongief/CPSP), [VGGSOUND](https://github.com/hche11/VGGSound), [AVS](https://github.com/OpenNLPLab/AVSBench).
 
-## ✏Model Checkpoints
+## ✏Model Checkpoints And Date Feature
 
-will be soon
-
-## ✏Data feature
-| Feature      | Link                                                 |
-| -------      | -----------------------------------------------------|
-| VGGSOUND     | will be soon|
-| AVE          | will be soon|
-| AVVP         | will be soon|
-| AVE_AVVP     | will be soon|
-| UCF_VGGSOUND | will be soon|
-| AVS          | will be soon|
+[Baidu Disk](https://pan.baidu.com/s/1u6gNTyclDSO5e1ONOKwqkA ) (pwd: 1234)
 
 For the video and audio feature extraction method, please refer to [AVE](https://github.com/YapengTian/AVE-ECCV18), text is based on the label to generate a description-focused statement of approximately 10 words in length.
+
+## ✏Directory
+
+```
+CMG
+├── checkpoint
+├── cnt.pkl
+├── code
+├── data
+├── figs
+├── README.md
+└── requirements.txt
+```
