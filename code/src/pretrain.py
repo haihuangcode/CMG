@@ -543,7 +543,7 @@ def mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_
     audio_vq, video_vq, text_vq, audio_embedding_loss, video_embedding_loss, text_embedding_loss, cmcm_loss, equal_num\
     = Encoder(audio_feature, video_feature, text_feature, epoch)
                
-    video_encoder_result = video_encoder_result.detach()
+    video_club_feature = video_club_feature.detach()
     text_encoder_result = text_encoder_result.detach()
     audio_encoder_result = audio_encoder_result.detach()
     video_vq = video_vq.detach()
