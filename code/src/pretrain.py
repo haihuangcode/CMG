@@ -383,6 +383,7 @@ def to_train(all_models):
     for m in all_models:
         m.train()
 
+# If resuming training is not required, downstream tasks only need to save the encoder and epoch, as these are the only components needed for inference.
 def save_models(CPC, Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder, optimizer, optimizer_audio_mi_net, optimizer_video_mi_net,optimizer_text_mi_net, epoch_num, total_step, path):
     state_dict = {
         'Encoder_parameters': Encoder.state_dict(),

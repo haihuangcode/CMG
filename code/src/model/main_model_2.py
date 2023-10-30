@@ -775,6 +775,8 @@ class Cross_VQEmbeddingEMA_AVT(nn.Module):
             self.unactivated_count[indice.item()] = 0
         for indice in v_indices:
             self.unactivated_count[indice.item()] = 0
+        for indice in t_indices:
+            self.unactivated_count[indice.item()] = 0
         activated_indices = []
         unactivated_indices = []
         for i, x in enumerate(self.unactivated_count):
