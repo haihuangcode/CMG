@@ -73,7 +73,7 @@ The paper has not been posted to arxiv, but will be soon.
 ## ✏Model Checkpoints And Date Feature
 
 [Baidu Disk](https://pan.baidu.com/s/1CTcjMHVeG-8uo4HPWNNL9Q ) (pwd: 1234)
-2023.11.17 Update https://github.com/haihuangcode/CMG/issues/1
+- 2023.11.07 Update https://github.com/haihuangcode/CMG/issues/1
 
 ## ✏Directory
 
@@ -84,6 +84,7 @@ CMG
 ├── code
 ├── data
 ├── figs
+├── paper
 ├── README.md
 └── requirements.txt
 ```
