@@ -8,7 +8,7 @@ This is the Pytorch implementation of our paper:
 
 Achieving Cross Modal Generalization with Multimodal Unified Representation
 
-[Yan Xia](https://scholar.google.com/citations?user=6kEbV3IAAAAJ&hl), [Hai Huang](https://github.com/haihuangcode), [Jieming Zhu](https://scholar.google.com/citations?user=oNKerP8AAAAJ), [Zhou Zhao](https://scholar.google.com.hk/citations?user=IIoFY90AAAAJ)
+[Yan Xia](https://scholar.google.com/citations?user=6kEbV3IAAAAJ&hl), [Hai Huang](https://scholar.google.com/citations?user=FKvBzQwAAAAJ), [Jieming Zhu](https://scholar.google.com/citations?user=oNKerP8AAAAJ), [Zhou Zhao](https://scholar.google.com.hk/citations?user=IIoFY90AAAAJ)
 
 In NeurIPS 2023
 
