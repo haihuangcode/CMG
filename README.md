@@ -22,6 +22,8 @@ In NeurIPS 2023
 git clone https://github.com/haihuangcode/CMG
 cd CMG
 # You don't actually have to install all the libraries in the txt file, you can choose to install them as needed.
+# It is recommended to use Python 3.7, as some libraries used do not support higher versions of Python.
+conda create -n your_env_name python=3.7
 pip install -r requirements.txt
 ```
 
