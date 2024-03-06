@@ -69,11 +69,12 @@ cd CMG/code/AVSBench_downstream/avs_scripts/avs_s4
 If you find this work useful, please consider citing it.
 
 ```
-@inproceedings{xia2023achieving,
+@article{xia2024achieving,
   title={Achieving Cross Modal Generalization with Multimodal Unified Representation},
   author={Xia, Yan and Huang, Hai and Zhu, Jieming and Zhao, Zhou},
-  booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
-  year={2023}
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
 }
 ```
 
