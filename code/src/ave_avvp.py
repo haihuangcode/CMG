@@ -57,8 +57,8 @@ def main():
     args = parser.parse_args()
     # select GPUs
     # os.environ['CUDA_DEVICE_ORDER'] = "PCI_BUS_ID"
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-    # os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
     '''Create snapshot_pred dir for copying code and saving models '''
     if not os.path.exists(args.snapshot_pref):
