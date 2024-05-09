@@ -787,7 +787,7 @@ class Cross_VQEmbeddingEMA_AVT(nn.Module):
                 activated_indices.append(i)
         activated_quantized = F.embedding(torch.tensor(activated_indices,dtype=torch.int32).cuda(), self.embedding)
         for i in unactivated_indices:
-            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, -1/1024).cuda()
+            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, 1/1024).cuda()
 
         cmcm_loss = 0.5 * (Lcmcm_av + Lcmcm_at + Lcmcm_tv)
 
@@ -974,7 +974,7 @@ class Cross_VQEmbeddingEMA_AT(nn.Module):
                 activated_indices.append(i)
         activated_quantized = F.embedding(torch.tensor(activated_indices,dtype=torch.int32).cuda(), self.embedding)
         for i in unactivated_indices:
-            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, -1/1024).cuda()
+            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, 1/1024).cuda()
 
         cmcm_loss = 0.5 * Lcmcm  
 
@@ -1149,7 +1149,7 @@ class Cross_VQEmbeddingEMA(nn.Module):
                 activated_indices.append(i)
         activated_quantized = F.embedding(torch.tensor(activated_indices,dtype=torch.int32).cuda(), self.embedding)
         for i in unactivated_indices:
-            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, -1/1024).cuda()
+            self.embedding[i] = activated_quantized[random.randint(0,len(activated_indices)-1)] + torch.Tensor(256).uniform_(-1/1024, 1/1024).cuda()
 
 
         cmcm_loss = 0.5 * Lcmcm  
