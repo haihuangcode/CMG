@@ -603,8 +603,7 @@ def mi_second_forward(CPC, audio_feature, video_feature, text_feature, Encoder, 
     
     return audio_embedding_loss, video_embedding_loss, text_embedding_loss, mi_audio_loss, mi_video_loss, mi_text_loss, \
            accuracy1, accuracy2, accuracy3, accuracy4, accuracy5, accuracy6, accuracy7, accuracy8, accuracy9, cpc_loss,  \
-           audio_recon_loss, video_recon_loss, text_recon_loss, audio_class, video_class, text_class, cmcm_loss, equal_num, zero_num, same_layer_fusion_loss, adjacent_layer_separation_loss
-
+           audio_recon_loss, video_recon_loss, text_recon_loss, audio_class, video_class, text_class, cmcm_loss, equal_num, zero_num
 
 def compute_accuracy_supervised(event_scores, labels):
     labels_foreground = labels[:, :, :-1]
