@@ -415,7 +415,7 @@ def train_epoch_check(train_dataloader, epoch, total_step, args):
         
     return torch.zeros(1)
 
-def train_epoch(CPC,Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,train_dataloader, criterion, criterion_event, optimizer, optimize_audio_mi_net, optimizer_video_mi_net, optimizer_text_mi_net, epoch, total_step, args):
+def train_epoch(CPC,Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,train_dataloader, criterion, criterion_event, optimizer, optimizer_audio_mi_net, optimizer_video_mi_net, optimizer_text_mi_net, epoch, total_step, args):
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
@@ -465,8 +465,8 @@ def train_epoch(CPC,Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_ne
         video_feature = video_feature.cuda().to(torch.float64)
         
         for i in range(mi_iters):
-            optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss, optimize_audio_mi_net, lld_audio_loss = \
-                mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, optimize_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch)
+            optimizer_audio_mi_net, lld_audio_loss, optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss  = \
+                mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch)
 
         audio_embedding_loss, video_embedding_loss,text_embedding_loss, mi_audio_loss, mi_video_loss, mi_text_loss, \
         accuracy1, accuracy2, accuracy3, accuracy4, accuracy5, accuracy6, accuracy7, accuracy8, accuracy9,\
