@@ -142,7 +142,7 @@ def main():
     '''optimizer setting'''
     Encoder.to(device)
     Decoder.to(device)
-    optimizer = torch.optim.Adam(chain(Encoder.parameters(), Decoder.parameters()), lr=args.lr)
+    optimizer = torch.optim.Adam(Decoder.parameters(), lr=args.lr)
 
     scheduler = MultiStepLR(optimizer, milestones=[10, 20, 30], gamma=0.5)
     
