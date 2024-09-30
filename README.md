@@ -17,7 +17,7 @@ In NeurIPS 2023
 ### 📝Requirements and Installation
 
 - ##### Getting Started
-
+**Due to the version conflict between bert_embedding's dependency on NumPy and other libraries, directly installing according to requirements.txt may cause issues. For more details, you can refer to this [issue](https://github.com/haihuangcode/CMG/issues/14)."**
 ```python
 git clone https://github.com/haihuangcode/CMG
 cd CMG
