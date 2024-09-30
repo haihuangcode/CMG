@@ -144,7 +144,7 @@ def main():
     Encoder.to(device)
     Decoder.to(device)
     ExpLogLoss_fn = ExpLogLoss(alpha=0.1)
-    optimizer = torch.optim.Adam(chain(Encoder.parameters(), Decoder.parameters(), ExpLogLoss_fn.alpha), lr=args.lr)
+    optimizer = torch.optim.Adam(chain(Decoder.parameters(), ExpLogLoss_fn.alpha), lr=args.lr)
 
     scheduler = MultiStepLR(optimizer, milestones=[10, 20, 30], gamma=0.5)
     
