@@ -10,7 +10,7 @@ from itertools import chain
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 from torch.utils.data import DataLoader
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 from torch.optim.lr_scheduler import StepLR, MultiStepLR
 import numpy as np
 from configs.opts import parser
@@ -23,6 +23,7 @@ from utils.Recorder import Recorder
 import torch.nn.functional as F
 from bert_embedding import BertEmbedding
 import pickle
+
 # =================================  seed config ============================
 SEED = 43
 random.seed(SEED)
@@ -140,7 +141,7 @@ def collate_func_AVT(samples):
 
 def main():
     # utils variable
-    global args, logger, writer, dataset_configs
+    global args, logger, dataset_configs
     # statistics variable
     global best_accuracy, best_accuracy_epoch
     best_accuracy, best_accuracy_epoch = 0, 0
@@ -231,8 +232,8 @@ def main():
         )
     elif args.dataset_name == 'vggsound_AVT':
         meta_csv_path = 'vggsound-avel40k.csv'
-        audio_fea_base_path = 'vggsound40k/feature/audio/zip'
-        video_fea_base_path = 'vggsound40k/feature/video/zip'
+        audio_fea_base_path = 'audio/zip'
+        video_fea_base_path = 'video/zip'
         train_dataloader = DataLoader(
             AVEDataset(meta_csv_path, audio_fea_base_path, video_fea_base_path, split='train'),
             batch_size=args.batch_size,
@@ -335,7 +336,8 @@ def main():
     criterion_event = nn.CrossEntropyLoss().cuda()
 
     if model_resume is True:
-        path_checkpoints = "..."
+        path_checkpoints = ""
+        print(path_checkpoints)
         checkpoints = torch.load(path_checkpoints)
         Encoder.load_state_dict(checkpoints['Encoder_parameters'])
         CPC.load_state_dict(checkpoints['CPC_parameters'])
@@ -345,22 +347,23 @@ def main():
         optimizer.load_state_dict(checkpoints['optimizer'])
         optimizer_audio_mi_net.load_state_dict(checkpoints['optimizer_audio_mi_net'])
         optimizer_video_mi_net.load_state_dict(checkpoints['optimizer_video_mi_net'])
+        Text_ar_lstm.load_state_dict(checkpoints['Text_ar_lstm_parameters'])
         start_epoch = checkpoints['epoch']
         total_step = checkpoints['total_step']
         logger.info("Resume from number {}-th model.".format(start_epoch))
 
     '''Tensorboard and Code backup'''
-    writer = SummaryWriter(args.snapshot_pref)
-    recorder = Recorder(args.snapshot_pref, ignore_folder="Exps/")
-    recorder.writeopt(args)
+    # writer = SummaryWriter(args.snapshot_pref)
+    # recorder = Recorder(args.snapshot_pref, ignore_folder="Exps/")
+    # recorder.writeopt(args)
 
     '''Training and Evaluation'''
-
     for epoch in range(start_epoch+1, args.n_epoch):
         loss, total_step = train_epoch(CPC, Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net,Text_mi_net, Decoder, train_dataloader, criterion, criterion_event,
                                        optimizer, optimizer_audio_mi_net, optimizer_video_mi_net, optimizer_text_mi_net, epoch, total_step, args)
         
-        save_path = os.path.join(args.model_save_path, 'your-model-{}.pt'.format(epoch))
+        
+        save_path = os.path.join(args.model_save_path, 'DCID-model-{}.pt'.format(epoch))
         save_models(CPC, Encoder, Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder, optimizer, optimizer_audio_mi_net, optimizer_video_mi_net, optimizer_text_mi_net, epoch, total_step, save_path)
         logger.info(f"epoch: ******************************************* {epoch}")
         logger.info(f"loss: {loss}")
@@ -464,14 +467,30 @@ def train_epoch(CPC,Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_ne
         audio_feature = audio_feature.cuda().to(torch.float64)
         video_feature = video_feature.cuda().to(torch.float64)
         
-        for i in range(mi_iters):
-            optimizer_audio_mi_net, lld_audio_loss, optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss  = \
-                mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch)
+        # for i in range(mi_iters):
+        #     optimizer_audio_mi_net, lld_audio_loss, optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss  = \
+        #         mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch)
+        
+        audio_semantic_result, video_semantic_result, text_semantic_result, \
+        audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result, \
+        audio_vq, video_vq, text_vq, audio_embedding_loss, video_embedding_loss, text_embedding_loss, cmcm_loss, equal_num\
+        = Encoder(audio_feature, video_feature, text_feature, epoch)
+        
+        optimizer_audio_mi_net, lld_audio_loss, optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss  = \
+        mi_first_forward(Audio_mi_net, Video_mi_net, Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch, 
+                         audio_vq.detach(), video_vq.detach(), text_vq.detach(),
+                         audio_encoder_result.detach(), video_encoder_result.detach(), video_club_feature.detach(), text_encoder_result.detach(),
+                         mi_iters)
 
-        audio_embedding_loss, video_embedding_loss,text_embedding_loss, mi_audio_loss, mi_video_loss, mi_text_loss, \
+
+        mi_audio_loss, mi_video_loss, mi_text_loss, \
         accuracy1, accuracy2, accuracy3, accuracy4, accuracy5, accuracy6, accuracy7, accuracy8, accuracy9,\
         cpc_loss, audio_recon_loss, video_recon_loss, text_recon_loss, \
-        audio_class, video_class, text_class, cmcm_loss, equal_num = mi_second_forward(CPC,audio_feature, video_feature, text_feature, Encoder,Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,epoch)
+        audio_class, video_class, text_class \
+        = mi_second_forward(CPC, audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,epoch,
+                      audio_semantic_result, video_semantic_result, text_semantic_result,
+                      audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result,
+                      audio_vq, video_vq, text_vq)
 
         if n_iter % 20 == 0:
             logger.info("equal_num is {} in {}-th iteration.".format(equal_num, n_iter))
@@ -524,45 +543,37 @@ def train_epoch(CPC,Encoder,Text_ar_lstm, Audio_mi_net, Video_mi_net, Text_mi_ne
         batch_time.update(time.time() - end_time)
         end_time = time.time()
 
-        '''Add loss of a iteration in Tensorboard'''
-        writer.add_scalar('Train_data/loss', losses.val, epoch * len(train_dataloader) + n_iter + 1)
+        # '''Add loss of a iteration in Tensorboard'''
+        # writer.add_scalar('Train_data/loss', losses.val, epoch * len(train_dataloader) + n_iter + 1)
 
-        '''Add loss of an epoch in Tensorboard'''
-        writer.add_scalar('Train_epoch_data/epoch_loss', losses.avg, epoch)
+        # '''Add loss of an epoch in Tensorboard'''
+        # writer.add_scalar('Train_epoch_data/epoch_loss', losses.avg, epoch)
 
     return losses.avg, n_iter + total_step
 
 
-def mi_first_forward(audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net,Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch):
+def mi_first_forward(Audio_mi_net, Video_mi_net, Text_mi_net, optimizer_audio_mi_net,optimizer_video_mi_net,optimizer_text_mi_net, epoch, 
+                         audio_vq, video_vq, text_vq,
+                         audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result,
+                         mi_iters):
 
-    optimizer_video_mi_net.zero_grad()
-    optimizer_text_mi_net.zero_grad()
-    optimizer_audio_mi_net.zero_grad()
+    for i in range(mi_iters):
+        optimizer_video_mi_net.zero_grad()
+        optimizer_text_mi_net.zero_grad()
+        optimizer_audio_mi_net.zero_grad()
 
-    audio_semantic_result, video_semantic_result, text_semantic_result, \
-    audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result, \
-    audio_vq, video_vq, text_vq, audio_embedding_loss, video_embedding_loss, text_embedding_loss, cmcm_loss, equal_num\
-    = Encoder(audio_feature, video_feature, text_feature, epoch)
-               
-    video_club_feature = video_club_feature.detach()
-    text_encoder_result = text_encoder_result.detach()
-    audio_encoder_result = audio_encoder_result.detach()
-    video_vq = video_vq.detach()
-    text_vq = text_vq.detach()
-    audio_vq = audio_vq.detach()
+        # video processing is different from audio and text modalities because video is more complex and feature extraction is more difficult.
+        lld_video_loss = -Video_mi_net.loglikeli(video_vq, video_club_feature)
+        lld_video_loss.backward()
+        optimizer_video_mi_net.step()
 
-    # video processing is different from audio and text modalities because video is more complex and feature extraction is more difficult.
-    lld_video_loss = -Video_mi_net.loglikeli(video_vq, video_club_feature)
-    lld_video_loss.backward()
-    optimizer_video_mi_net.step()
+        lld_text_loss = -Text_mi_net.loglikeli(text_vq, text_encoder_result)
+        lld_text_loss.backward()
+        optimizer_text_mi_net.step()
 
-    lld_text_loss = -Text_mi_net.loglikeli(text_vq, text_encoder_result)
-    lld_text_loss.backward()
-    optimizer_text_mi_net.step()
-
-    lld_audio_loss = -Audio_mi_net.loglikeli(audio_vq, audio_encoder_result)
-    lld_audio_loss.backward()
-    optimizer_audio_mi_net.step()
+        lld_audio_loss = -Audio_mi_net.loglikeli(audio_vq, audio_encoder_result)
+        lld_audio_loss.backward()
+        optimizer_audio_mi_net.step()
 
     return optimizer_audio_mi_net, lld_audio_loss, optimizer_video_mi_net, lld_video_loss, optimizer_text_mi_net, lld_text_loss 
 
@@ -583,11 +594,14 @@ def VQ_video_forward(audio_feature, visual_feature, Encoder, optimizer,epoch):
     optimizer.zero_grad()
     return video_vq_forard_loss, optimizer
 
-def mi_second_forward(CPC, audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,epoch):
-    audio_semantic_result, video_semantic_result, text_semantic_result, \
-    audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result, \
-    audio_vq, video_vq, text_vq, audio_embedding_loss, video_embedding_loss, text_embedding_loss, cmcm_loss, equal_num \
-    = Encoder(audio_feature, video_feature, text_feature, epoch)
+def mi_second_forward(CPC, audio_feature, video_feature, text_feature, Encoder, Audio_mi_net, Video_mi_net, Text_mi_net, Decoder,epoch,
+                      audio_semantic_result, video_semantic_result, text_semantic_result,
+                      audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result,
+                      audio_vq, video_vq, text_vq):
+    # audio_semantic_result, video_semantic_result, text_semantic_result, \
+    # audio_encoder_result, video_encoder_result, video_club_feature, text_encoder_result, \
+    # audio_vq, video_vq, text_vq, audio_embedding_loss, video_embedding_loss, text_embedding_loss, cmcm_loss, equal_num \
+    # = Encoder(audio_feature, video_feature, text_feature, epoch)
     
     mi_video_loss = Video_mi_net.mi_est(video_vq, video_club_feature)
     mi_text_loss = Text_mi_net.mi_est(text_vq, text_encoder_result)
@@ -601,9 +615,9 @@ def mi_second_forward(CPC, audio_feature, video_feature, text_feature, Encoder, 
     audio_recon_loss, video_recon_loss, text_recon_loss, audio_class, video_class, text_class \
         = Decoder(audio_feature, video_feature, text_feature, audio_encoder_result, video_encoder_result, text_encoder_result, audio_vq, video_vq, text_vq)
     
-    return audio_embedding_loss, video_embedding_loss, text_embedding_loss, mi_audio_loss, mi_video_loss, mi_text_loss, \
+    return mi_audio_loss, mi_video_loss, mi_text_loss, \
            accuracy1, accuracy2, accuracy3, accuracy4, accuracy5, accuracy6, accuracy7, accuracy8, accuracy9, cpc_loss,  \
-           audio_recon_loss, video_recon_loss, text_recon_loss, audio_class, video_class, text_class, cmcm_loss, equal_num, zero_num
+           audio_recon_loss, video_recon_loss, text_recon_loss, audio_class, video_class, text_class
 
 def compute_accuracy_supervised(event_scores, labels):
     labels_foreground = labels[:, :, :-1]
