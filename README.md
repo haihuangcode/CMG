@@ -29,6 +29,10 @@ pip install -r requirements.txt
 
 - ##### Pretrain
 ```python
+# Before you begin pretraining, please make sure to modify the file paths under `args.dataset_name == 'vggsound_AVT'` in `pretrain.py` to your own paths.
+# Additionally, update the `file_path` and `self.label2prompt = pd.read_csv('')` paths in `dataset/VGGSOUND_dataset.py`.
+# The model save path is located under `--model_save_path` in `configs/opts.py`.
+# Please also remember to modify the paths related to downstream tasks and the corresponding dataset paths to your own paths.
 cd CMG/code/src
 ./pretrain.sh
 ```
@@ -80,9 +84,11 @@ If you find this work useful, please consider citing it.
 
 ## ✏Model Checkpoints And Date Feature
 
-[Baidu Disk](https://pan.baidu.com/s/1CTcjMHVeG-8uo4HPWNNL9Q ) (pwd: 1234)
+[data](https://pan.baidu.com/s/1CTcjMHVeG-8uo4HPWNNL9Q ) (pwd: 1234)
 - 2023.11.07 Update https://github.com/haihuangcode/CMG/issues/1
 
+[patch](https://pan.baidu.com/s/1rjVmRMut39kezw0FDZ7MwQ) (pwd: 1234)
+- 2024.12.27 This is a patch for the previous data errors. Please download the complete data from the above and replace the csv files in the patch with the ones in `data/vggsound40k/data`, specifically replacing `vggsound-avel40k.csv` and `video_name_vggsound40k_checked.csv`. The previous https://github.com/haihuangcode/CMG/issues/13 regarding unsatisfactory model training results were caused by the incomplete csv files that were uploaded earlier, which only contained 20k data entries. I apologize for not noticing this earlier /(ㄒoㄒ)/~~
 ## ✏Directory
 
 ```
