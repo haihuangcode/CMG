@@ -1,16 +1,16 @@
-# Achieving Cross Modal Generalization with Multimodal Unified Representation, NeurIPS 2023
+## Open-set Cross Modal Generalization via Multimodal Unified Representation, ICCV 2025
+![model](ICCV25-OSCMG/figs/MICU.png)
 
 
+## Enhancing Multimodal Unified Representations for Cross Modal Generalization, ACL 2025 (Findings)
+![model](ACL25-FCID&TOC/figs/FCID.png)
+
+
+## Achieving Cross Modal Generalization with Multimodal Unified Representation, NeurIPS 2023
 
 ![model](figs/model.png)
 
-This is the Pytorch implementation of our paper:
-
-Achieving Cross Modal Generalization with Multimodal Unified Representation
-
-[Yan Xia](https://scholar.google.com/citations?user=6kEbV3IAAAAJ&hl), [Hai Huang](https://scholar.google.com/citations?user=FKvBzQwAAAAJ), [Jieming Zhu](https://scholar.google.com/citations?user=oNKerP8AAAAJ), [Zhou Zhao](https://scholar.google.com.hk/citations?user=IIoFY90AAAAJ)
-
-In NeurIPS 2023
+This is the Pytorch implementation of our paper: Achieving Cross Modal Generalization with Multimodal Unified Representation In NeurIPS 2023
 
 ------
 
