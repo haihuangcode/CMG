@@ -1,0 +1,13 @@
+# ======================================= Learning configs ==================================
+n_epoch: 25
+batch_size: 80
+test_batch_size: 128
+lr: 0.0004
+mi_lr: 0.001
+loss_weights: 0.5
+clip_gradient: 0.5
+start_epoch: 0
+weight_decay: 5e-4
+snapshot_pref: ./Exps/ave/
+print_freq: 1
+eval_freq: 1
