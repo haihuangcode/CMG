@@ -1,19 +1,46 @@
-## Open-set Cross Modal Generalization via Multimodal Unified Representation, ICCV 2025
-![model](ICCV25-OSCMG/figs/MICU.png)
+# 🧠 CMG: Cross Modal Generalization
 
-This is the Pytorch implementation of our paper: **Open-set Cross Modal Generalization via Multimodal Unified Representation in ICCV 2025**
-[code](https://github.com/haihuangcode/CMG/tree/master/ICCV25-OSCMG)
+Welcome to the official PyTorch implementation of our series of works on **Cross Modal Generalization (CMG)** and **Multimodal Unified Representations**.
 
-## Enhancing Multimodal Unified Representations for Cross Modal Generalization, ACL 2025 (Findings)
-![model](ACL25-FCID&TOC/figs/FCID.png)
+---
 
-This is the Pytorch implementation of our paper: **Enhancing Multimodal Unified Representations for Cross Modal Generalization in ACL 2025 Findings**
-[code](https://github.com/haihuangcode/CMG/tree/master/ACL25-FCID%26TOC)
+## 📌 Projects Overview
 
-## Achieving Cross Modal Generalization with Multimodal Unified Representation, NeurIPS 2023
-![model](figs/model.png)
+### 🔶 ICCV 2025 · Open-set Cross Modal Generalization (OSCMG)
 
-This is the Pytorch implementation of our paper: **Achieving Cross Modal Generalization with Multimodal Unified Representation In NeurIPS 2023**
+**Paper**: *Open-set Cross Modal Generalization via Multimodal Unified Representation*  
+**Conference**: ICCV 2025  
+**Code**: [📂 ICCV25-OSCMG](https://github.com/haihuangcode/CMG/tree/master/ICCV25-OSCMG)
+
+<p align="center">
+  <img src="ICCV25-OSCMG/figs/MICU.png" alt="MICU Architecture" width="600"/>
+</p>
+
+
+---
+
+### 🔷 ACL 2025 (Findings) · Feature Disentangling & Training-Free Optimization
+
+**Paper**: *Enhancing Multimodal Unified Representations for Cross Modal Generalization*  
+**Conference**: ACL 2025 (Findings)  
+**Code**: [📂 ACL25-FCID&TOC](https://github.com/haihuangcode/CMG/tree/master/ACL25-FCID%26TOC)
+
+<p align="center">
+  <img src="ACL25-FCID&TOC/figs/FCID.png" alt="FCID Architecture" width="600"/>
+</p>
+
+
+---
+
+### 🔰 NeurIPS 2023 · Foundational CMG Framework
+
+**Paper**: *Achieving Cross Modal Generalization with Multimodal Unified Representation*  
+**Conference**: NeurIPS 2023  
+**Code**: Current directory (root of this repo)
+
+<p align="center">
+  <img src="figs/model.png" alt="NeurIPS 2023 Model" width="600"/>
+</p>
 
 ------
 
@@ -76,6 +103,13 @@ cd CMG/code/AVSBench_downstream/avs_scripts/avs_s4
 If you find this work useful, please consider citing it.
 
 ```
+@article{huang2024enhancing,
+  title={Enhancing Multimodal Unified Representations for Cross Modal Generalization},
+  author={Huang, Hai and Xia, Yan and Ji, Shengpeng and Wang, Shulei and Wang, Hanting and Fang, Minghui and Zhu, Jieming and Dong, Zhenhua and Zhou, Sashuai and Zhao, Zhou},
+  journal={arXiv preprint arXiv:2403.05168},
+  year={2024}
+}
+
 @article{xia2024achieving,
   title={Achieving Cross Modal Generalization with Multimodal Unified Representation},
   author={Xia, Yan and Huang, Hai and Zhu, Jieming and Zhao, Zhou},
