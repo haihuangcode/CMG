@@ -1,16 +1,19 @@
 ## Open-set Cross Modal Generalization via Multimodal Unified Representation, ICCV 2025
 ![model](ICCV25-OSCMG/figs/MICU.png)
 
+This is the Pytorch implementation of our paper: **Open-set Cross Modal Generalization via Multimodal Unified Representation in ICCV 2025**
+[code](https://github.com/haihuangcode/CMG/tree/master/ICCV25-OSCMG)
 
 ## Enhancing Multimodal Unified Representations for Cross Modal Generalization, ACL 2025 (Findings)
 ![model](ACL25-FCID&TOC/figs/FCID.png)
 
+This is the Pytorch implementation of our paper: **Enhancing Multimodal Unified Representations for Cross Modal Generalization in ACL 2025 Findings**
+[code](https://github.com/haihuangcode/CMG/tree/master/ACL25-FCID%26TOC)
 
 ## Achieving Cross Modal Generalization with Multimodal Unified Representation, NeurIPS 2023
-
 ![model](figs/model.png)
 
-This is the Pytorch implementation of our paper: Achieving Cross Modal Generalization with Multimodal Unified Representation In NeurIPS 2023
+This is the Pytorch implementation of our paper: **Achieving Cross Modal Generalization with Multimodal Unified Representation In NeurIPS 2023**
 
 ------
 
