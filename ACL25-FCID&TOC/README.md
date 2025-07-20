@@ -2,7 +2,7 @@
 
 
 
-![model](ACL25-FCID&TOC/figs/FCID.png)
+![model](figs/FCID.png)
 
 This is the Pytorch implementation of our paper:
 
