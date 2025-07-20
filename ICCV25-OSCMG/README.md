@@ -2,7 +2,7 @@
 
 
 
-![model](ICCV25-OSCMG/figs/MICU.png)
+![model](figs/MICU.png)
 
 This is the Pytorch implementation of our paper:
 
