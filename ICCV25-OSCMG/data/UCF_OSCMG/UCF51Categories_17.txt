@@ -1,0 +1,17 @@
+PlayingCello
+UnevenBars
+FrisbeeCatch
+CliffDiving
+FrontCrawl
+BasketballDunk
+FieldHockeyPenalty
+BoxingPunchingBag
+HammerThrow
+CricketBowling
+PlayingDhol
+Hammering
+ApplyLipstick
+HandStandPushups
+HandstandWalking
+PlayingFlute
+MoppingFloor

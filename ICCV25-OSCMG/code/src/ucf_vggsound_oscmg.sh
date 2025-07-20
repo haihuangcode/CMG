@@ -1,0 +1,12 @@
+python ucf_vggsound_oscmg.py \
+--gpu 2 \
+--lr 0.0004 \
+--clip_gradient 0.5 \
+--snapshot_pref "./Exps/ucf_vggsound/" \
+--n_epoch 25 \
+--b 80 \
+--test_batch_size 64 \
+--dataset_name "ucfv_vgga" \
+--print_freq 1 \
+--eval_freq 1 \
+--source_class_num 8
