@@ -103,6 +103,13 @@ cd CMG/code/AVSBench_downstream/avs_scripts/avs_s4
 If you find this work useful, please consider citing it.
 
 ```
+@article{huang2025open,
+  title={Open-set Cross Modal Generalization via Multimodal Unified Representation},
+  author={Huang, Hai and Xia, Yan and Wang, Shulei and Wang, Hanting and Fang, Minghui and Ji, Shengpeng and Zhou, Sashuai and Jin, Tao and Zhao, Zhou},
+  journal={arXiv preprint arXiv:2507.14935},
+  year={2025}
+}
+
 @article{huang2024enhancing,
   title={Enhancing Multimodal Unified Representations for Cross Modal Generalization},
   author={Huang, Hai and Xia, Yan and Ji, Shengpeng and Wang, Shulei and Wang, Hanting and Fang, Minghui and Zhu, Jieming and Dong, Zhenhua and Zhou, Sashuai and Zhao, Zhou},
