@@ -14,6 +14,10 @@ Open-set Cross Modal Generalization via Multimodal Unified Representation
 Please refer to [CMG](https://github.com/haihuangcode/CMG/blob/master/README.md)
 
 ### ✏Model Checkpoints And Date Feature
-[data](https://drive.google.com/drive/folders/1ThGAXoqay7RanGwHz21qZGMEjF3W1VwS)
+Google Driver or Huggingface 
 
-Checkpoint is MICU.pt
+[Google Driver](https://drive.google.com/drive/folders/1DOEen_1xNwWrgpd6-lTuepuF91tUGiBV)
+
+[Huggingface](https://huggingface.co/datasets/haihuangcode/CMG/tree/main/CMG)
+
+#### Checkpoint is MICU.pt
