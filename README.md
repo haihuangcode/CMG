@@ -127,17 +127,18 @@ If you find this work useful, please consider citing it.
 ```
 
 ## ✏Model Checkpoints And Date Feature
-You can choose to download from either Baidu Netdisk or Google Drive.
+You can choose to download from either Baidu Netdisk, Google Drive or Huggingface.
 
 ### Baidu Netdisk (If you are unable to access Google Drive, please use the following two links)
 [data](https://pan.baidu.com/s/1CTcjMHVeG-8uo4HPWNNL9Q ) (pwd: 1234)
-- 2023.11.07 Update https://github.com/haihuangcode/CMG/issues/1
-
 [patch](https://pan.baidu.com/s/1rjVmRMut39kezw0FDZ7MwQ) (pwd: 1234)
-- 2024.12.27 This is a patch for the previous data errors. Please download the complete data from the above and replace the csv files in the patch with the ones in `data/vggsound40k/data`, specifically replacing `vggsound-avel40k.csv` and `video_name_vggsound40k_checked.csv`. The previous https://github.com/haihuangcode/CMG/issues/13 regarding unsatisfactory model training results were caused by the incomplete csv files that were uploaded earlier, which only contained 20k data entries. I apologize for not noticing this earlier /(ㄒoㄒ)/~~
+This is a patch for the previous data errors. Please download the complete data from the above and replace the csv files in the patch with the ones in `data/vggsound40k/data`, specifically replacing `vggsound-avel40k.csv` and `video_name_vggsound40k_checked.csv`. The previous https://github.com/haihuangcode/CMG/issues/13 regarding unsatisfactory model training results were caused by the incomplete csv files that were uploaded earlier, which only contained 20k data entries. I apologize for not noticing this earlier /(ㄒoㄒ)/~~
 
 ### Google Drive (Includes the complete data and patch)
-[data+patch](https://drive.google.com/drive/folders/1ThGAXoqay7RanGwHz21qZGMEjF3W1VwS?usp=drive_link)
+[data+patch](https://drive.google.com/drive/folders/1DOEen_1xNwWrgpd6-lTuepuF91tUGiBV)
+
+### Huggingface (Includes the complete data and patch)
+[data+patch](https://huggingface.co/datasets/haihuangcode/CMG/tree/main/CMG)
 
 ## ✏Directory
 
